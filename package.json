@@ -1,0 +1,20 @@
+{
+  "name": "nasa_web_app",
+  "version": "1.0.0",
+  "description": "web application to search through images using NASA's API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adam724/nasa_web_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adam724/nasa_web_app/issues"
+  },
+  "homepage": "https://github.com/Adam724/nasa_web_app#readme"
+}
