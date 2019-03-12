@@ -2,16 +2,22 @@
 
 <html>
     <head>
-        <title>Webpage</title>
+        <title>NASA Web App</title>
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
         <script src="script.js"></script>
+        <h1>NASA Image Gallery Search Tool</h1>
         <form>
             <input id="searchBox" type="text" placeholder="Search..">
             <input type="submit" value="Submit" onclick="search(); return false;">
         </form>
-        <div id="searchResults"></div>
+        <div id="searchResults">
+            <div class="column" style="border-style: solid; border-color: green"></div>
+            <div class="column" style="border-style: solid; border-color: red"></div>
+            <div class="column" style="border-style: solid; border-color: blue"></div>
+            <div class="column" style="border-style: solid; border-color: yellow"></div>
+        </div>
     </body>
 
 </html>
