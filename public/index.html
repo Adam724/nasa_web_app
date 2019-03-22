@@ -4,19 +4,47 @@
     <head>
         <title>NASA Web App</title>
         <link rel="stylesheet" href="style.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+        <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+        <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+        <script src="script.js"></script>
     </head>
     <body>
-        <script src="script.js"></script>
+        
         <h1>NASA Image Gallery Search Tool</h1>
         <form>
             <input id="searchBox" type="text" placeholder="Search..">
-            <input type="submit" value="Submit" onclick="search(); return false;">
+           <button type="submit" class="searchBtn" onclick="search(); return false;"><i class="material-icons">search</i></button>
+           <label class="container">Use Advanced Search
+                <input type="checkbox" id="showAdv" onclick="toggleSearchTools()">
+                <span class="checkmark"></span>
+              </label>
+            <label id="numResults"></label>
+            <br><br>
+            <div id="advToolsCont" hidden="true">
+                <div id="advTools">
+                    <label>From Year: </label><input id="startYear" type="number" min="1800" max="2099" step="1" value="1900">
+                    <label>To Year: </label><input id="endYear" type="number" min="1800" max="2099" step="1" value="2019">
+                    <br><br>
+                    <label>Location: </label><input id="location" type="text" value="" placeholder="Enter a Location..">
+                </div>
+            </div>
         </form>
-        <div id="searchResults">
+       <!-- <div id="searchResults">
             <div class="column" style="border-style: solid; border-color: green"></div>
             <div class="column" style="border-style: solid; border-color: red"></div>
             <div class="column" style="border-style: solid; border-color: blue"></div>
             <div class="column" style="border-style: solid; border-color: yellow"></div>
+        </div> -->
+        <div id="searchResults"></div>
+        <div id="navCont">
+            <button id="prevBtn" hidden="true" onclick="getPrevPage()"><i class="material-icons">arrow_back</i> Previous</button>
+            <button id="nextBtn" hidden="true" onclick="getNextPage()">Next <i class="material-icons">arrow_forward</i></button>
         </div>
     </body>
 

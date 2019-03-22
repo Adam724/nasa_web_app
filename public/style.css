@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
 
 html{
@@ -14,6 +15,177 @@ h1 {
     text-align: center;
 }
 
+#advTools{
+    margin-bottom: 1em;
+    background-color: rgba(169, 169, 169, .75);
+    border-radius: 4px;
+    display: inline-block;
+    padding: 8px;
+}
+
+#searchResults{
+    border-style: solid;
+}
+
+#searchResults::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+.result{
+    float: left;
+    position: relative;
+    text-align: center;
+    color: white;
+    width: 25%;
+}
+
+img{
+    /*top, right, bottom, left*/
+    padding: 4px 4px 0 4px;
+    width: 100%;
+}
+
+.mData{
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, .75);
+    text-align: left;
+}
+
+#imgDesc, #imgDate{
+    width: 90%;
+    padding-left: 5%;
+}
+
+#searchBox{
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#startYear, #endYear, #location{
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid lightgrey;
+}
+
+button{
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    border-radius: 4px;
+}
+
+.searchBtn{
+    vertical-align: middle;
+    padding: 8px 6px 5px 6px;
+}
+.material-icons{
+    vertical-align: middle;
+}
+
+#navCont{
+    margin-top: 12px;
+    text-align: center;
+}
+
+#nextBtn, #prevBtn{
+    
+}
+
+button:hover{
+    opacity: 1;
+}
+
+.md-raised:hover{
+    cursor: pointer;
+}
+
+#numResults{
+    padding-left: 2em;
+}
+
+
+/* The checkbox container */
+.container {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    margin-left: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: inline-block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  
+/*
 img {
     display: block;
     margin-left: auto;
@@ -31,6 +203,7 @@ img {
     flex: 25%;
     max-width: 25%;
     padding: 0 4px;
+    height: auto;
 }
   
 .column img {
@@ -51,4 +224,136 @@ img {
         flex: 100%;
         max-width: 100%;
     }
-}
+}*/
+
+.popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1060;
+    display: none;
+    max-width: 30%;
+    padding: 1px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.42857143;
+    line-break: auto;
+    text-align: left;
+    text-align: start;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    word-break: normal;
+    word-spacing: normal;
+    word-wrap: normal;
+    white-space: normal;
+    font-size: 14px;
+    background-color: #edefea;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  .popover.top {
+    margin-top: -10px;
+  }
+  .popover.right {
+    margin-left: 10px;
+  }
+  .popover.bottom {
+    margin-top: 10px;
+  }
+  .popover.left {
+    margin-left: -10px;
+  }
+  .popover > .arrow {
+    border-width: 11px;
+  }
+  .popover > .arrow,
+  .popover > .arrow:after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+  .popover > .arrow:after {
+    content: "";
+    border-width: 10px;
+  }
+  .popover.top > .arrow {
+    bottom: -11px;
+    left: 50%;
+    margin-left: -11px;
+    border-top-color: #999999;
+    border-top-color: rgba(0, 0, 0, 0.25);
+    border-bottom-width: 0;
+  }
+  .popover.top > .arrow:after {
+    bottom: 1px;
+    margin-left: -10px;
+    content: " ";
+    border-top-color: #fff;
+    border-bottom-width: 0;
+  }
+  .popover.right > .arrow {
+    top: 50%;
+    left: -11px;
+    margin-top: -11px;
+    border-right-color: #999999;
+    border-right-color: rgba(0, 0, 0, 0.25);
+    border-left-width: 0;
+  }
+  .popover.right > .arrow:after {
+    bottom: -10px;
+    left: 1px;
+    content: " ";
+    border-right-color: #fff;
+    border-left-width: 0;
+  }
+  .popover.bottom > .arrow {
+    top: -11px;
+    left: 50%;
+    margin-left: -11px;
+    border-top-width: 0;
+    border-bottom-color: #999999;
+    border-bottom-color: rgba(0, 0, 0, 0.25);
+  }
+  .popover.bottom > .arrow:after {
+    top: 1px;
+    margin-left: -10px;
+    content: " ";
+    border-top-width: 0;
+    border-bottom-color: #fff;
+  }
+  .popover.left > .arrow {
+    top: 50%;
+    right: -11px;
+    margin-top: -11px;
+    border-right-width: 0;
+    border-left-color: #999999;
+    border-left-color: rgba(0, 0, 0, 0.25);
+  }
+  .popover.left > .arrow:after {
+    right: 1px;
+    bottom: -10px;
+    content: " ";
+    border-right-width: 0;
+    border-left-color: #fff;
+  }
+  .popover-title {
+    padding: 8px 14px;
+    margin: 0;
+    font-size: 14px;
+    background-color: darkgrey;
+    border-bottom: 1px solid #ebebeb;
+    border-radius: 5px 5px 0 0;
+  }
+  .popover-content {
+    padding: 9px 14px;
+  }
