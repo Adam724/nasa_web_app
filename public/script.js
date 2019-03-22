@@ -9,9 +9,13 @@ function search(){
     //Clear previous search results before displaying new
     deleteContents(results);
 
+    //Get and validate search query
     var term = document.getElementById("searchBox").value + "";
     var patt = new RegExp(/^[a-z0-9 ]+$/i);
-    if(!(patt.test(term))){return;}
+    if(!(patt.test(term))){
+        results.innerHTML = "<b>No Results</b>";
+        return;
+    }
     var uri = "https://images-api.nasa.gov/search?q=" + term + "&media_type=image";
 
     //add advanced search criteria to request if applicable
@@ -19,10 +23,12 @@ function search(){
         uri = uri + "&year_start=" + document.getElementById("startYear").value + "&year_end=" + document.getElementById("endYear").value;
         uri = uri + "&location=" + document.getElementById("location").value;
     }
+    results.style.border = "solid";
     pageNum = 1;
+
+    //Send request and set handler
     xhr.open('GET', encodeURI(uri), true);
-    xhr.send();   
-    
+    xhr.send();
     xhr.addEventListener("readystatechange", processRequest, false);
 }
 
@@ -39,8 +45,9 @@ function toggleSearchTools(){
     var toolsCont = document.getElementById("advToolsCont");
     var chkBx = document.getElementById("showAdv");
     toolsCont.hidden = true;
-    if(chkBx.checked)
+    if(chkBx.checked){
         toolsCont.hidden = false;
+    }
 }
 
 function getPrevPage(){
@@ -102,8 +109,9 @@ function processRequest(e) {
             document.getElementById("searchResults").appendChild(container);
         }
 
+        //initialize image popover, keep open when user hovers
+        //over it
         $(document).ready(function(){
-            alert("deez");
             $('[data-toggle="popover"]').popover({
                 container: "body", trigger: "manual"
             }).on("mouseenter", function () {
@@ -118,7 +126,7 @@ function processRequest(e) {
                     if (!$(".popover:hover").length) {
                         $(_this).popover("hide");
                     }
-                }, 300);
+                }, 100);
              });
         });
 
@@ -130,6 +138,7 @@ function processRequest(e) {
         }
     );*/
 
+        //Initialize Masonry once images have loaded
         var $grid = $('#searchResults').imagesLoaded(function(){
             $grid.masonry({
                 itemSelector: '.result',
