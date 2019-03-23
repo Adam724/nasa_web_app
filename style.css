@@ -8,7 +8,7 @@ html{
 }
 
 body {
-    background-color: blanchedalmond;
+    background-color: #edf0f5;
 }
 
 h1 {
@@ -17,7 +17,7 @@ h1 {
 
 #advTools{
     margin-bottom: 1em;
-    background-color: rgba(169, 169, 169, .75);
+    background-color: rgba(169, 169, 169, .25);
     border-radius: 4px;
     display: inline-block;
     padding: 8px;
@@ -118,7 +118,6 @@ button:hover{
 #numResults{
     padding-left: 2em;
 }
-
 
 /* The checkbox container */
 .container {

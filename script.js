@@ -9,11 +9,16 @@ function search(){
     //Clear previous search results before displaying new
     deleteContents(results);
 
+    document.getElementById("nextBtn").hidden = true;
+    document.getElementById("prevBtn").hidden = true;
+    document.getElementById("instructions").hidden = true;
+
     //Get and validate search query
     var term = document.getElementById("searchBox").value + "";
     var patt = new RegExp(/^[a-z0-9 ]+$/i);
     if(!(patt.test(term))){
         results.innerHTML = "<b>No Results</b>";
+        results.style.border = "none";
         return;
     }
     var uri = "https://images-api.nasa.gov/search?q=" + term + "&media_type=image";
@@ -73,33 +78,30 @@ function processRequest(e) {
         var response = JSON.parse(xhr.responseText);
         $('#searchResults').masonry('destroy');
 
-        var container; var pic; var mdata; var desc; var date;
+        var container; var pic; var desc; var date;
         for(var i = 0; i < response.collection.items.length; i++){
+            //create container for search result
             container = document.createElement("DIV");
             container.className = "result";
+
+            //create image, set source and add to container
             pic = document.createElement("IMG");
             pic.setAttribute("src", response.collection.items[i].links[0].href);
             container.appendChild(pic);
 
-           /* $('[data-toggle="popover"]').popover({
-                container: container
-            });*/
-            //mdata = document.createElement("DIV");
-            //mdata.className = "mData";
+            //Assemble date
             date = document.createElement("P");
             date.id = "imgDate";
             var d = response.collection.items[i].data[0].date_created;
             date.innerHTML = "Creation Date: " + d.slice(5,7) + "-" + d.slice(8,10) + "-" + d.slice(0,4);
-            //mdata.appendChild(date);
 
+            //Assemble image description
             desc = document.createElement("P");
             desc.id = "imgDesc";
             desc.innerHTML = response.collection.items[i].data[0].description;
             if(desc.innerHTML === 'undefined'){desc.innerHTML = "";}
-            //mdata.appendChild(desc);
-            //mdata.style.visibility = "hidden";
-            //container.appendChild(mdata);
 
+            //Set popover information
             pic.title = date.innerHTML;
             pic.setAttribute("data-content", desc.innerHTML);
             pic.setAttribute("data-toggle", "popover");
@@ -107,10 +109,11 @@ function processRequest(e) {
             pic.setAttribute("data-trigger", "focus");
             pic.setAttribute("data-placement", "auto right");
 
+            //Add result container to search results
             document.getElementById("searchResults").appendChild(container);
         }
 
-        //initialize image popover
+        //initialize image popovers
         $(document).ready(function(){
             $('[data-toggle="popover"]').popover({
                 container: "body"
@@ -149,5 +152,6 @@ function processRequest(e) {
             uriP = response.collection.links[0].href;
         }
         resNum.innerHTML = "Showing " + ((pageNum - 1) * 100 + 1) + " - " + maxNum + " of " + response.collection.metadata.total_hits + " results";
+        document.getElementById("instructions").hidden = false;
     }
 }
