@@ -17,7 +17,13 @@ function search(){
     var term = document.getElementById("searchBox").value + "";
     var patt = new RegExp(/^[a-z0-9 ]+$/i);
     if(!(patt.test(term))){
-        results.innerHTML = "<b>No Results</b>";
+        if(term.length < 1){
+            results.innerHTML = "<b>Search Field Cannot be Blank.</b>";
+        }
+        else{
+            results.innerHTML = "<b>Search Term Must Contain Only Letters and Numbers.</b>";
+        }
+        document.getElementById("numResults").innerHTML = "";
         results.style.border = "none";
         return;
     }
@@ -99,7 +105,9 @@ function processRequest(e) {
             desc = document.createElement("P");
             desc.id = "imgDesc";
             desc.innerHTML = response.collection.items[i].data[0].description;
-            if(desc.innerHTML === 'undefined'){desc.innerHTML = "";}
+            if(desc.innerHTML === 'undefined'){
+                desc.innerHTML = "";
+            }
 
             //Set popover information
             pic.title = date.innerHTML;
@@ -130,6 +138,13 @@ function processRequest(e) {
 
         var resNum = document.getElementById("numResults");
         var maxNum = response.collection.metadata.total_hits;
+        if(maxNum == 0){
+            document.getElementById("searchResults").innerHTML = "<b>No Results</b>";
+            document.getElementById("searchResults").style.border = "none";
+            document.getElementById("instructions").hidden = true;
+            document.getElementById("numResults").innerHTML = "Showing 0 Results";
+            return;
+        }
 
         var next = document.getElementById("nextBtn");
         var prev = document.getElementById("prevBtn");
