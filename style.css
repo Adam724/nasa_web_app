@@ -43,6 +43,15 @@ img{
     width: 100%;
 }
 
+img:hover{
+  opacity: .85;
+  cursor: pointer;
+}
+
+img:focus{
+  outline: none;
+}
+
 .mData{
     display: inline-block;
     position: absolute;
@@ -312,4 +321,6 @@ button:hover{
   }
   .popover-content {
     padding: 9px 14px;
+    max-height: 500px;
+    overflow: auto;
   }

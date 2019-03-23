@@ -103,40 +103,19 @@ function processRequest(e) {
             pic.title = date.innerHTML;
             pic.setAttribute("data-content", desc.innerHTML);
             pic.setAttribute("data-toggle", "popover");
-            //pic.setAttribute("data-trigger", "hover");
+            pic.setAttribute("tabindex", "0");
+            pic.setAttribute("data-trigger", "focus");
             pic.setAttribute("data-placement", "auto right");
 
             document.getElementById("searchResults").appendChild(container);
         }
 
-        //initialize image popover, keep open when user hovers
-        //over it
+        //initialize image popover
         $(document).ready(function(){
             $('[data-toggle="popover"]').popover({
-                container: "body", trigger: "manual"
-            }).on("mouseenter", function () {
-                var _this = this;
-                $(this).popover("show");
-                $(".popover").on("mouseleave", function () {
-                    $(_this).popover('hide');
-                });
-            }).on("mouseleave", function () {
-                var _this = this;
-                setTimeout(function () {
-                    if (!$(".popover:hover").length) {
-                        $(_this).popover("hide");
-                    }
-                }, 100);
+                container: "body"
              });
         });
-
-        /*
-        $('.result').hover(function(){
-            $(this).find('.mData').css("visibility", "visible");
-        }, function(){
-            $(this).find('.mData').css("visibility", "hidden");
-        }
-    );*/
 
         //Initialize Masonry once images have loaded
         var $grid = $('#searchResults').imagesLoaded(function(){
